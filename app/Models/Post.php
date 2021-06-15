@@ -9,6 +9,8 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $appends = ['comment_count'];
+
     public function getRouteKeyName()
     {
         return 'slug';
@@ -27,5 +29,10 @@ class Post extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function getCommentCountAttribute()
+    {
+        return $this->comments()->count();
     }
 }
