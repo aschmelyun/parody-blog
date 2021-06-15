@@ -21,8 +21,12 @@ class CommentFactory extends Factory
      */
     public function definition()
     {
+        $datetime = $this->faker->dateTimeBetween('-1 month', 'now');
+
         return [
-            'body' => $this->faker->paragraph
+            'body' => $this->faker->paragraph,
+            'created_at' => $datetime,
+            'updated_at' => $datetime
         ];
     }
 }

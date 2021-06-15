@@ -21,6 +21,8 @@ class User extends Authenticatable
         'email',
         'password',
         'remember_token',
+        'created_at',
+        'updated_at'
     ];
 
     public function posts()

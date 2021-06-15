@@ -23,11 +23,14 @@ class PostFactory extends Factory
     public function definition()
     {
         $title = $this->faker->sentence;
+        $datetime = $this->faker->dateTimeBetween('-1 month', 'now');
 
         return [
             'title' => $title,
             'slug' => Str::slug($title),
-            'content' => '<p>' . implode('</p><p>', $this->faker->paragraphs(rand(3, 5))) . '</p>'
+            'content' => '<p>' . implode('</p><p>', $this->faker->paragraphs(rand(3, 5))) . '</p>',
+            'created_at' => $datetime,
+            'updated_at' => $datetime
         ];
     }
 }
