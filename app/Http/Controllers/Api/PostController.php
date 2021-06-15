@@ -11,12 +11,12 @@ class PostController extends Controller
     public function index()
     {
         return Post::with('user')
-            ->paginate(20);
+            ->get();
     }
 
     public function show(Post $post)
     {
-        $post->load('user');
+        $post->load('user', 'comments');
 
         return $post;
     }

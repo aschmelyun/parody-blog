@@ -15,7 +15,7 @@ class CommentController extends Controller
 
         return $post->comments()
             ->with('user')
-            ->paginate(20);
+            ->get();
     }
 
     public function show(Post $post, Comment $comment)
