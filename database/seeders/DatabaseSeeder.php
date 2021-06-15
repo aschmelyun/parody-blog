@@ -20,12 +20,14 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(10)
             ->create()
             ->each(function($user) use($categories) {
-                $posts = \App\Models\Post::factory(10)
-                    ->create()
-                    ->each(function($post) use($categories) {
-                        $post->categories()->attach($categories->random(2)->pluck('id')->toArray());
-                    });
-                $user->posts()->save($posts);
+                $posts = $user->posts()->saveMany(
+                    \App\Models\Post::factory(10)
+                        ->make()
+                );
+
+                $posts->each(function($post) use($categories) {
+                    $post->categories()->attach($categories->random(2)->pluck('id')->toArray());
+                });
             });
 
         \App\Models\Comment::factory(50)
