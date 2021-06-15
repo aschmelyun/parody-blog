@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
                 });
             });
 
-        \App\Models\Comment::factory(50)
+        \App\Models\Comment::factory(500)
             ->state(new Sequence(
                 function() {
                     return [
